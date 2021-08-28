@@ -57,7 +57,7 @@ catch {
     exit 1
 }
 
-Write-Host "Script run successfully."
-Write-Host "You need to reboot your system for the changes to have effect."
+Write-Host "Script run successful."
+Write-Host "You'll need to reboot your system for the changes to take effect."
 
 exit 0
