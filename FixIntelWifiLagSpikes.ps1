@@ -9,11 +9,14 @@ $nicLocation = $null
 #$netType = "NetType"
 #$providerValue = "Intel"
 #$netTypeValue = "WLAN"
+$disabled = 0
+$enabled = 1
 
 $scanDisableOnHighOrMulticast = "ScanDisableOnHighOrMulticast"
 $scanDisableOnLowLatencyOrQos = "ScanDisableOnLowLatencyOrQos"
 $scanDisableOnLowTraffic = "ScanDisableOnLowTraffic"
 $scanDisableOnMediumTraffic = "ScanDisableOnMediumTraffic"
+$scanWhenAssociated = "ScanWhenAssociated"
 
 Write-Host "Searching registry for an Intel Wireless NIC ..."
 
@@ -37,14 +40,16 @@ if ($null -eq $nicLocation) {
 }
 
 try {
-    Write-Host "Writing registry key $scanDisableOnHighOrMulticast to $nicLocation."
-    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnHighOrMulticast -Value 1 -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
-    Write-Host "Writing registry key $scanDisableOnLowLatencyOrQos to $nicLocation."
-    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnLowLatencyOrQos -Value 1 -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
-    Write-Host "Writing registry key $scanDisableOnLowTraffic to $nicLocation."
-    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnLowTraffic -Value 1 -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
-    Write-Host "Writing registry key $scanDisableOnMediumTraffic to $nicLocation."
-    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnMediumTraffic -Value 1 -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
+    Write-Host "Writing registry key $scanDisableOnHighOrMulticast with Value $enabled to $nicLocation."
+    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnHighOrMulticast -Value $enabled -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
+    Write-Host "Writing registry key $scanDisableOnLowLatencyOrQos with Value $enabled to $nicLocation."
+    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnLowLatencyOrQos -Value $enabled -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
+    Write-Host "Writing registry key $scanDisableOnLowTraffic with Value $enabled to $nicLocation."
+    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnLowTraffic -Value $enabled -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
+    Write-Host "Writing registry key $scanDisableOnMediumTraffic with Value $enabled to $nicLocation."
+    New-ItemProperty -Path $nicLocation.PsPath -Name $scanDisableOnMediumTraffic -Value $enabled -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
+    Write-Host "Writing registry key $scanWhenAssociated with Value $disabled to $nicLocation."
+    New-ItemProperty -Path $nicLocation.PsPath -Name $scanWhenAssociated -Value $disabled -PropertyType DWORD -ErrorAction Stop -Force | Out-Null
 }
 catch {
     Write-Host "Writing to the registry at $nicLocation failed: $($_.Exception.Message)."
