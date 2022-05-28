@@ -12,7 +12,7 @@ These lag spikes lead to periodical (say all 4 to 6 minutes) interruptions of a 
 
 ## Insights:
 
-This scripts looks in the Registry under the path `HKLM:\SYSTEM\ControlSet001\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}` for any Intel Wireless NIC (based on vendor (`Intel`) and NetType (`Wifi`) of the NIC) and adds five registry keys:
+This scripts looks in the Registry under the path `HKLM:\SYSTEM\ControlSet001\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}` for any Intel Wireless NIC (based on vendor (`Intel`) and NetType (`WLAN`) of the NIC) and adds five registry keys:
 
 * "ScanDisableOnHighOrMulticast" as DWORD with the value 1
 * "ScanDisableOnLowLatencyOrQos" as DWORD with the value 1
